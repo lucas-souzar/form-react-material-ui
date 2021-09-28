@@ -1,9 +1,15 @@
 import React from "react";
 
 import PersonalDataForm from "../PersonalDataForm";
+import UserDataForm from "../UserDataForm/UserDataForm";
 
 const RegistrationForm: React.FC<any> = () => {
-  return <PersonalDataForm onSave={onSubmitData} validateCPF={validateCPF} />;
+  return (
+    <>
+      <PersonalDataForm onSave={onSubmitData} validateCPF={validateCPF} />
+      <UserDataForm />
+    </>
+  );
 };
 
 const onSubmitData = (data: any) => {
