@@ -12,9 +12,21 @@ function App() {
         Formulário de Cadastro
       </Typography>
 
-      <RegistrationForm />
+      <RegistrationForm onSave={onSubmitData} validateCPF={validateCPF} />
     </Container>
   );
+}
+
+function onSubmitData(data: any) {
+  console.log(data);
+}
+
+function validateCPF(cpf: string) {
+  if (cpf.length !== 11) {
+    return { valid: false, message: "CPF deve conter 11 dígitos" };
+  } else {
+    return { valid: true, message: "" };
+  }
 }
 
 export default App;
