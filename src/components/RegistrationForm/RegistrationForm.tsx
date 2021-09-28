@@ -1,7 +1,7 @@
 import React from "react";
 
-import PersonalDataForm from "../PersonalDataForm";
-import UserDataForm from "../UserDataForm/UserDataForm";
+import PersonalDataForm from "./PersonalDataForm";
+import UserDataForm from "./UserDataForm";
 
 const RegistrationForm: React.FC<any> = () => {
   return (
