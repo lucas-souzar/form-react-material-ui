@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, FormControlLabel, Switch, TextField } from "@material-ui/core";
 
-declare interface Person {
+export interface Person {
   name: string;
   lastName: string;
   cpf: string;
@@ -14,7 +14,7 @@ declare interface FormProps {
   validateCPF: (cpf: string) => { valid: boolean; message: string };
 }
 
-function RegistrationForm(props: FormProps) {
+const RegistrationForm: React.FC<FormProps> = (props) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -93,6 +93,6 @@ function RegistrationForm(props: FormProps) {
       </Button>
     </form>
   );
-}
+};
 
 export default RegistrationForm;
