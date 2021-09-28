@@ -1,9 +1,8 @@
 import { Container, Typography } from "@material-ui/core";
 import "@fontsource/roboto";
 
-import RegistrationForm from "../RegistrationForm";
-
 import "./App.css";
+import RegistrationForm from "../RegistrationForm";
 
 const App = () => {
   return (
@@ -12,21 +11,9 @@ const App = () => {
         Formulário de Cadastro
       </Typography>
 
-      <RegistrationForm onSave={onSubmitData} validateCPF={validateCPF} />
+      <RegistrationForm />
     </Container>
   );
-};
-
-const onSubmitData = (data: any) => {
-  console.log(data);
-};
-
-const validateCPF = (cpf: string) => {
-  if (cpf.length !== 11) {
-    return { valid: false, message: "CPF deve conter 11 dígitos" };
-  } else {
-    return { valid: true, message: "" };
-  }
 };
 
 export default App;
