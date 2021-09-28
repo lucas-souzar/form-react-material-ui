@@ -1,4 +1,5 @@
 import React from "react";
+import DeliveryDataForm from "./DeliveryDataForm";
 
 import PersonalDataForm from "./PersonalDataForm";
 import UserDataForm from "./UserDataForm";
@@ -8,6 +9,7 @@ const RegistrationForm: React.FC<any> = () => {
     <>
       <PersonalDataForm onSave={onSubmitData} validateCPF={validateCPF} />
       <UserDataForm />
+      <DeliveryDataForm />
     </>
   );
 };
