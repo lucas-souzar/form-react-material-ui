@@ -8,7 +8,7 @@ const RegistrationForm: React.FC<any> = () => {
   return (
     <>
       <PersonalDataForm onSave={onSubmitData} validateCPF={validateCPF} />
-      <UserDataForm />
+      <UserDataForm onSave={onSubmitData} />
       <DeliveryDataForm />
     </>
   );
