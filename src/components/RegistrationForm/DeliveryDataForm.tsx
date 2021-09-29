@@ -1,11 +1,18 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
 
-interface DeliveryDataFormProps {}
+interface DeliveryDataFormProps {
+  onSave: () => void;
+}
 
-const DeliveryDataForm: React.FC<DeliveryDataFormProps> = () => {
+const DeliveryDataForm: React.FC<DeliveryDataFormProps> = (props) => {
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        props.onSave();
+      }}
+    >
       <TextField
         id="cep"
         label="CEP"

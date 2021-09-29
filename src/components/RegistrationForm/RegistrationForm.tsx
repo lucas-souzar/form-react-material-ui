@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import DeliveryDataForm from "./DeliveryDataForm";
 
 import PersonalDataForm from "./PersonalDataForm";
 import UserDataForm from "./UserDataForm";
 
 const RegistrationForm: React.FC<any> = () => {
-  return (
-    <>
-      <PersonalDataForm onSave={onSubmitData} validateCPF={validateCPF} />
-      <UserDataForm onSave={onSubmitData} />
-      <DeliveryDataForm />
-    </>
-  );
+  const [actualStep, setActualStep] = useState(0);
+
+  const next = () => {
+    setActualStep(actualStep + 1);
+  };
+
+  const forms = [
+    <UserDataForm onSave={next} />,
+    <PersonalDataForm onSave={next} validateCPF={validateCPF} />,
+    <DeliveryDataForm onSave={onSubmitData} />,
+  ];
+
+  return <>{forms[actualStep]}</>;
 };
 
-const onSubmitData = (data: any) => {
+const onSubmitData = (data?: any) => {
   console.log(data);
 };
 
