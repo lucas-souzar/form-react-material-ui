@@ -9,12 +9,12 @@ export interface Person {
   news: boolean;
 }
 
-declare interface PersonalDataFormProps {
-  onSave: (person: Person) => void;
-  validateCPF: (cpf: string) => { valid: boolean; message: string };
-}
+// declare interface PersonalDataFormProps {
+//   onSave: (person: Person) => void;
+//   validators: (validators: any) => void;
+// }
 
-const PersonalDataForm: React.FC<PersonalDataFormProps> = (props) => {
+const PersonalDataForm: React.FC<any> = ({ onSave, validators }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -22,11 +22,21 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = (props) => {
   const [news, setNews] = useState(true);
   const [errors, setErrors] = useState({ cpf: { valid: true, message: "" } });
 
+  const validateFields = (event: any) => {
+    const { name, value } = event.target;
+    const isValid = validators[name](value);
+    const newState: any = { ...errors };
+    newState[name] = isValid;
+    setErrors(newState);
+
+    console.log(newState);
+  };
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        props.onSave({ name, lastName, cpf, promotions, news });
+        onSave({ name, lastName, cpf, promotions, news });
       }}
     >
       <TextField
@@ -50,13 +60,11 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = (props) => {
       <TextField
         value={cpf}
         onChange={(event) => setCpf(event.target.value)}
-        onBlur={() => {
-          const isValid = props.validateCPF(cpf);
-          setErrors({ cpf: isValid });
-        }}
+        onBlur={(event) => validateFields(event)}
         error={!errors.cpf.valid}
         helperText={errors.cpf.message}
         id="cpf"
+        name="cpf"
         label="CPF"
         placeholder="000.000.000-00"
         variant="outlined"

@@ -1,15 +1,15 @@
 import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import DeliveryDataForm from "./DeliveryDataForm";
 
+import DeliveryDataForm from "./DeliveryDataForm";
 import PersonalDataForm from "./PersonalDataForm";
 import UserDataForm from "./UserDataForm";
 
-const RegistrationForm: React.FC<any> = () => {
+const RegistrationForm: React.FC<any> = ({ onSubmit, validators }) => {
   const [actualStep, setActualStep] = useState(0);
   const [collectedData, setCollectedData] = useState({});
   useEffect(() => {
-    if (actualStep === forms.length - 1) onSubmitData(collectedData);
+    if (actualStep === forms.length - 1) onSubmit(collectedData);
   });
 
   const collectData = (data: any) => {
@@ -23,7 +23,7 @@ const RegistrationForm: React.FC<any> = () => {
 
   const forms = [
     <UserDataForm onSave={collectData} />,
-    <PersonalDataForm onSave={collectData} validateCPF={validateCPF} />,
+    <PersonalDataForm onSave={collectData} validators={validators} />,
     <DeliveryDataForm onSave={collectData} />,
     <Typography variant="h5">Obrigado pelo cadastro!</Typography>,
   ];
@@ -47,18 +47,6 @@ const RegistrationForm: React.FC<any> = () => {
       {forms[actualStep]}
     </>
   );
-};
-
-const onSubmitData = (data?: any) => {
-  console.log(data);
-};
-
-const validateCPF = (cpf: string) => {
-  if (cpf.length !== 11) {
-    return { valid: false, message: "CPF deve conter 11 dígitos" };
-  } else {
-    return { valid: true, message: "" };
-  }
 };
 
 export default RegistrationForm;
