@@ -1,8 +1,8 @@
 import { Container, Typography } from "@material-ui/core";
-import "@fontsource/roboto";
+
+import RegistrationForm from "../RegistrationForm";
 
 import "./App.css";
-import RegistrationForm from "../RegistrationForm";
 
 const App = () => {
   return (

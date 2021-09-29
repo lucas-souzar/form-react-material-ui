@@ -5,3 +5,9 @@
 
   font-family: "Roboto", sans-serif;
 }
+
+.css-x09vki-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
+  .MuiOutlinedInput-notchedOutline {
+  background-color: #fff2f5;
+  z-index: -1;
+}
