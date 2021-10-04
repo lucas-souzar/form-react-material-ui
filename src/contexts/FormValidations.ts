@@ -1,7 +1,14 @@
 import React from "react";
 
-const initalValue: any = "";
+const noValidation = (data: any) => {
+  console.log(data);
+  return { valid: true, message: "" };
+};
 
-const FormValidations = React.createContext(initalValue);
+const FormValidations = React.createContext({
+  cpf: noValidation,
+  password: noValidation,
+  name: noValidation,
+});
 
 export default FormValidations;
