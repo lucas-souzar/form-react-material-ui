@@ -22,7 +22,7 @@ const RegistrationForm: React.FC<any> = ({ onSubmit, validators }) => {
   };
 
   const forms = [
-    <UserDataForm onSave={collectData} />,
+    <UserDataForm onSave={collectData} validators={validators} />,
     <PersonalDataForm onSave={collectData} validators={validators} />,
     <DeliveryDataForm onSave={collectData} />,
     <Typography variant="h5">Obrigado pelo cadastro!</Typography>,

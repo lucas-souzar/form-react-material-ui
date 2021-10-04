@@ -20,7 +20,10 @@ const PersonalDataForm: React.FC<any> = ({ onSave, validators }) => {
   const [cpf, setCpf] = useState("");
   const [promotions, setPromotions] = useState(true);
   const [news, setNews] = useState(true);
-  const [errors, setErrors] = useState({ cpf: { valid: true, message: "" } });
+  const [errors, setErrors] = useState({
+    cpf: { valid: true, message: "" },
+    name: { valid: true, message: "" },
+  });
 
   const validateFields = (event: any) => {
     const { name, value } = event.target;
@@ -32,17 +35,30 @@ const PersonalDataForm: React.FC<any> = ({ onSave, validators }) => {
     console.log(newState);
   };
 
+  const canSubmit = () => {
+    for (let field in errors) {
+      console.log(field);
+      // @ts-ignore
+      if (!errors[field].valid) return false;
+    }
+    return true;
+  };
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSave({ name, lastName, cpf, promotions, news });
+        if (canSubmit()) onSave({ name, lastName, cpf, promotions, news });
       }}
     >
       <TextField
         value={name}
         onChange={(event) => setName(event.target.value)}
+        onBlur={(event) => validateFields(event)}
+        error={!errors.name.valid}
+        helperText={errors.name.message}
         id="name"
+        name="name"
         label="Nome"
         variant="outlined"
         margin="normal"
@@ -97,7 +113,7 @@ const PersonalDataForm: React.FC<any> = ({ onSave, validators }) => {
       />
 
       <Button variant="contained" color="primary" type="submit">
-        Cadastrar
+        Próximo
       </Button>
     </form>
   );

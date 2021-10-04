@@ -14,7 +14,11 @@ const App = () => {
 
       <RegistrationForm
         onSubmit={onSubmitData}
-        validators={{ cpf: validateCPF, password: validatePassword }}
+        validators={{
+          cpf: validateCPF,
+          password: validatePassword,
+          name: validatePassword,
+        }}
       />
     </Container>
   );
