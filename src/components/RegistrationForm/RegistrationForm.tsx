@@ -5,7 +5,7 @@ import DeliveryDataForm from "./DeliveryDataForm";
 import PersonalDataForm from "./PersonalDataForm";
 import UserDataForm from "./UserDataForm";
 
-const RegistrationForm: React.FC<any> = ({ onSubmit, validators }) => {
+const RegistrationForm: React.FC<any> = ({ onSubmit }) => {
   const [actualStep, setActualStep] = useState(0);
   const [collectedData, setCollectedData] = useState({});
   useEffect(() => {
@@ -22,8 +22,8 @@ const RegistrationForm: React.FC<any> = ({ onSubmit, validators }) => {
   };
 
   const forms = [
-    <UserDataForm onSave={collectData} validators={validators} />,
-    <PersonalDataForm onSave={collectData} validators={validators} />,
+    <UserDataForm onSave={collectData} />,
+    <PersonalDataForm onSave={collectData} />,
     <DeliveryDataForm onSave={collectData} />,
     <Typography variant="h5">Obrigado pelo cadastro!</Typography>,
   ];

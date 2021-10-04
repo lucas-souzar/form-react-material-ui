@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, FormControlLabel, Switch, TextField } from "@material-ui/core";
+
+import FormValidations from "../../contexts/FormValidations";
 
 export interface Person {
   name: string;
@@ -14,7 +16,7 @@ export interface Person {
 //   validators: (validators: any) => void;
 // }
 
-const PersonalDataForm: React.FC<any> = ({ onSave, validators }) => {
+const PersonalDataForm: React.FC<any> = ({ onSave }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -25,8 +27,11 @@ const PersonalDataForm: React.FC<any> = ({ onSave, validators }) => {
     name: { valid: true, message: "" },
   });
 
+  const validators = useContext(FormValidations);
+
   const validateFields = (event: any) => {
     const { name, value } = event.target;
+    // @ts-ignore
     const isValid = validators[name](value);
     const newState: any = { ...errors };
     newState[name] = isValid;

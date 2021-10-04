@@ -1,4 +1,5 @@
 import { Container, Typography } from "@material-ui/core";
+import FormValidations from "../../contexts/FormValidations";
 import { validateCPF, validatePassword } from "../../utils/validators";
 
 import RegistrationForm from "../RegistrationForm";
@@ -12,14 +13,15 @@ const App = () => {
         Formulário de Cadastro
       </Typography>
 
-      <RegistrationForm
-        onSubmit={onSubmitData}
-        validators={{
+      <FormValidations.Provider
+        value={{
           cpf: validateCPF,
           password: validatePassword,
           name: validatePassword,
         }}
-      />
+      >
+        <RegistrationForm onSubmit={onSubmitData} />
+      </FormValidations.Provider>
     </Container>
   );
 };

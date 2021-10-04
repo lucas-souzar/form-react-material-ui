@@ -1,5 +1,7 @@
+import { useContext, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
-import { useState } from "react";
+
+import FormValidations from "../../contexts/FormValidations";
 
 export interface User {
   email: string;
@@ -10,15 +12,18 @@ export interface User {
 //   onSave: (user: User) => void;
 // }
 
-const UserDataForm: React.FC<any> = ({ onSave, validators }) => {
+const UserDataForm: React.FC<any> = ({ onSave }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
     password: { valid: true, message: "" },
   });
 
+  const validators = useContext(FormValidations);
+
   const validateFields = (event: any) => {
     const { name, value } = event.target;
+    // @ts-ignore
     const isValid = validators[name](value);
     const newState: any = { ...errors };
     newState[name] = isValid;
